@@ -2,6 +2,7 @@ package com.olxlogin.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
@@ -13,6 +14,7 @@ import com.olxlogin.dto.MasterdataCategory;
 import com.olxlogin.entity.MasterdataStatusEntity;
 import com.olxlogin.entity.MasterdataCategoryEntity;
 import com.olxlogin.repository.MasterdataStatusRepo;
+import com.zensar.exception.InvalidMasterdataCategoryIdException;
 import com.olxlogin.repository.MasterdataCategoryRepo;
 
 @Service
@@ -46,6 +48,25 @@ public class MasterdataServiceImpl implements MasterdataService {
 		}
 		return masterdataStatusDtoList;
 	}
+	@Override
+	public String getByIdMasterdataCategory(int id) {
+		Optional<MasterdataCategoryEntity> opMasterdataCategoryEntity = masterdataCategoryRepo.findById(id);
+		if(opMasterdataCategoryEntity.isPresent()) {
+			MasterdataCategoryEntity masterdataCategoryEntity = opMasterdataCategoryEntity.get();
+			return masterdataCategoryEntity.getCategory();
+		}
+		throw new InvalidMasterdataCategoryIdException(""+id);
+	}
+	@Override
+	public String getByIdMasterdataStatus(int id) {
+		Optional<MasterdataStatusEntity> opMasterdataStatusEntity = masterdataStatusRepo.findById(id);
+		if(opMasterdataStatusEntity.isPresent()) {
+			MasterdataStatusEntity masterdataStatusEntity = opMasterdataStatusEntity.get();
+			return masterdataStatusEntity.getStatus();
+		}
+		throw new InvalidMasterdataCategoryIdException(""+id);
+	}
+
 	/*
 	private AdvertisementCategoryEntity convertDtoIntoEntity(AdvertisementCategory advertisementCategory) {
 		TypeMap<AdvertisementCategory,AdvertisementCategoryEntity> typeMap = 
@@ -72,6 +93,7 @@ public class MasterdataServiceImpl implements MasterdataService {
 		MasterdataStatus masterdataStatus = modelMapper.map(masterdataStatusEntity,MasterdataStatus.class);
 		return masterdataStatus;
 	}
+
 
 
 }

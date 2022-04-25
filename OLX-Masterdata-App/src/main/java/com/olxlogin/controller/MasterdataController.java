@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.olxlogin.Service.MasterdataService;
@@ -36,5 +38,14 @@ public class MasterdataController {
 	public List<MasterdataStatus> allMasterdataStatus() {
 		return masterdataService.allMasterdataStatus();
 	}
+	@GetMapping(value="/advertise/category/{id}", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+	public String getByIdMasterdataCategory(@PathVariable("id")int id) {
+		return masterdataService.getByIdMasterdataCategory(id);
+	}
+	@GetMapping(value="/advertise/status/{id}", produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+	public String getByIdMasterdataStatus(@PathVariable("id")int id) {
+		return masterdataService.getByIdMasterdataStatus(id);
+	}
+
 	
 }

@@ -1,8 +1,14 @@
 package com.olxlogin.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value="Masterdata Status DTO")
 public class MasterdataStatus {
 	
+	@ApiModelProperty(value="Masterdata Status Identifier")
 	private int id;
+	@ApiModelProperty(value="Masterdata Status")
 	private String status;
 	public MasterdataStatus(int id, String status) {
 		super();

@@ -8,5 +8,7 @@ import com.olxlogin.dto.MasterdataCategory;
 public interface MasterdataService {
 	public List<MasterdataCategory> allMasterdataCategory();
 	public List<MasterdataStatus> allMasterdataStatus();
+	public String getByIdMasterdataCategory(int id);
+	public String getByIdMasterdataStatus(int id);
 
 }

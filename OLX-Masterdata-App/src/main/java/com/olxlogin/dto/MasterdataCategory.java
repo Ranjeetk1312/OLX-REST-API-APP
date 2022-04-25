@@ -1,8 +1,14 @@
 package com.olxlogin.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value="Masterdata Category DTO")
 public class MasterdataCategory {
 	
+	@ApiModelProperty(value="Masterdata Category Identifier")
 	private int id;
+	@ApiModelProperty(value="Masterdata Category")
 	private String category;
 	public MasterdataCategory(int id, String category) {
 		super();
