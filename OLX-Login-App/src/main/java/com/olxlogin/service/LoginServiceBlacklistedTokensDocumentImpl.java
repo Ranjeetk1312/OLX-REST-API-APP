@@ -75,6 +75,12 @@ public class LoginServiceBlacklistedTokensDocumentImpl implements LoginService{
 		return stock;
 	}
 	*/
+
+	@Override
+	public String returnUserName(String authToken) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

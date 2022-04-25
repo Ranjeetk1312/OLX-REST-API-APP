@@ -7,12 +7,17 @@ import io.swagger.annotations.ApiModelProperty;
 public class User {
 	@ApiModelProperty(value="User Identifier")
 	private int id;
-	@ApiModelProperty(value="User name")
+	@ApiModelProperty(value="User FirstName")
 	private String firstName;
+	@ApiModelProperty(value="User LastName")
 	private String lastName;
+	@ApiModelProperty(value="User UserName")
 	private String userName;
+	@ApiModelProperty(value="User Password")
 	private String password;
+	@ApiModelProperty(value="User Email")
 	private String email;
+	@ApiModelProperty(value="User PhoneNo.")
 	private long phone;
 	public User(int id, String firstName, String lastName, String userName, String password, String email, long phone) {
 		super();

@@ -30,7 +30,7 @@ public class LoginController {
 	LoginService loginService;
 	
 	
-	@PostMapping(value="/user/authonticate", consumes=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value="/user/authonticate", consumes= {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
 	@ApiOperation(value="Login Authontication",notes="This REST API Login Authontication")
 	public String authenticate(@RequestBody User user) {
 		return loginService.authenticate(user);
@@ -54,6 +54,11 @@ public class LoginController {
 	@ApiOperation(value="Validate Token",notes="This REST API Validate Token")
 	public ResponseEntity<Boolean> validateToken(@RequestHeader("Authorization")String authToken){//(@RequestHeader("auth-token")
 		return new ResponseEntity<Boolean>(loginService.validateToken(authToken), HttpStatus.OK);
+	}
+	@GetMapping(value="/user/username",consumes= {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+	@ApiOperation(value="User Information",notes="This REST API Return User Information")
+	public String returnUserName(@RequestHeader("Authorization")String authToken) {
+		return loginService.returnUserName(authToken);
 	}
 
 }

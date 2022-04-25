@@ -15,4 +15,7 @@ public interface LoginService {
 	public User registers(User user);
 	public List<User> returnUserInfo(String authToken);
 	public boolean validateToken(String authToken);
+	//
+	public String returnUserName(String authToken);
+
 }

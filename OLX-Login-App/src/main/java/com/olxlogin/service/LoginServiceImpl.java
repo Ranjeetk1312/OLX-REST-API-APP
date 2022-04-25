@@ -19,6 +19,7 @@ import com.olxlogin.dto.User;
 import com.olxlogin.entity.LoginEntity;
 import com.olxlogin.repository.LoginRepo;
 import com.olxlogin.security.JwtUtil;
+import com.zensar.exception.InvalidAuthTokenException;
 import com.zensar.exception.InvalidCredentialsException;
 
 @Service(value="RDBMS_SERVICE")
@@ -80,11 +81,16 @@ public class LoginServiceImpl implements LoginService {
 	}
 	@Override
 	public boolean validateToken(String authToken) {
-		String authTokenArray[]=authToken.split(" ");
-		authToken=authTokenArray[1];
-		String username =jwtUtil.extractUsername(authToken);
-		UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-		return jwtUtil.validateToken(authToken, userDetails);
+		try {
+			String authTokenArray[]=authToken.split(" ");
+			authToken=authTokenArray[1];
+			String username =jwtUtil.extractUsername(authToken);
+			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+			return jwtUtil.validateToken(authToken, userDetails);
+		}
+		catch(Exception ex) {
+			return false;
+		}
 	}
 
 
@@ -106,6 +112,15 @@ public class LoginServiceImpl implements LoginService {
 		return user;
 	}
 
-	
+	@Override
+	public String returnUserName(String authToken) {
+		if(validateToken(authToken)) {
+			String authTokenArray[]=authToken.split(" ");
+			authToken=authTokenArray[1];
+			String username =jwtUtil.extractUsername(authToken);
+			return username;
+		}
+		return null;
+	}
 
 }
