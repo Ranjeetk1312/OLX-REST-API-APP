@@ -2,36 +2,56 @@ package com.olxlogin.dto;
 
 import java.time.LocalDate;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel(value="Advertise DTO")
 public class AdvertiseDTO {
-	private long id;
+	@ApiModelProperty(value="Advertise Identifier")
+	private int id;
+	@ApiModelProperty(value="Advertise Title")
 	private String title;
+	@ApiModelProperty(value="Advertise Description")
 	private String description;
+	@ApiModelProperty(value="Advertise Price")
 	private double price;
-	private long category;
+	@ApiModelProperty(value="Advertise CategoryId")
+	private int categoryId;
+	@ApiModelProperty(value="Advertise StatuseId")
+	private int statusId;
+	@ApiModelProperty(value="Advertise CreatedDate")
 	private LocalDate createdDate;
+	@ApiModelProperty(value="Advertise MadifiedData")
 	private LocalDate modifiedDate;
-	private String active;
+	@ApiModelProperty(value="Advertise category")
+	private String category;
+	@ApiModelProperty(value="Advertise status")
+	private String status;
+	@ApiModelProperty(value="Advertise UserName")
 	private String username;
-	public AdvertiseDTO(long id, String title, String description, double price, long category, LocalDate createdDate,
-			LocalDate modifiedDate, String active, String username) {
+	
+	public AdvertiseDTO(int id, String title, String description, double price, int categoryId, int statusId,
+			LocalDate createdDate, LocalDate modifiedDate, String category,String status, String username) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.price = price;
-		this.category = category;
+		this.categoryId = categoryId;
+		this.statusId = statusId;
 		this.createdDate = createdDate;
 		this.modifiedDate = modifiedDate;
-		this.active = active;
+		this.category = category;
+		this.status = status;
 		this.username = username;
 	}
 	public AdvertiseDTO() {
 		super();
 	}
-	public long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getTitle() {
@@ -52,14 +72,20 @@ public class AdvertiseDTO {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public long getCategory() {
-		return category;
+	public int getCategoryId() {
+		return categoryId;
 	}
-	public void setCategory(long category) {
-		this.category = category;
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 	public LocalDate getCreatedDate() {
 		return createdDate;
+	}
+	public int getStatusId() {
+		return statusId;
+	}
+	public void setStatusId(int statusId) {
+		this.statusId = statusId;
 	}
 	public void setCreatedDate(LocalDate createdDate) {
 		this.createdDate = createdDate;
@@ -70,11 +96,17 @@ public class AdvertiseDTO {
 	public void setModifiedDate(LocalDate modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
-	public String getActive() {
-		return active;
+	public String getCategory() {
+		return category;
 	}
-	public void setActive(String active) {
-		this.active = active;
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	public String getUsername() {
 		return username;
@@ -82,11 +114,13 @@ public class AdvertiseDTO {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
 	@Override
 	public String toString() {
 		return "AdvertiseDTO [id=" + id + ", title=" + title + ", description=" + description + ", price=" + price
-				+ ", category=" + category + ", createdDate=" + createdDate + ", modifiedDate=" + modifiedDate
-				+ ", active=" + active + ", username=" + username + "]";
+				+ ", categoryId=" + categoryId + ", statusId=" + statusId + ", createdDate=" + createdDate
+				+ ", modifiedDate=" + modifiedDate + ", category=" + category +
+				",status=" + status + ", username=" + username + "]";
 	}
 	
 
