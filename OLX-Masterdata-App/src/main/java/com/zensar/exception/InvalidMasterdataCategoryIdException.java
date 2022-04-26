@@ -17,7 +17,7 @@ public class InvalidMasterdataCategoryIdException extends RuntimeException{
 
 	@Override
 	public String toString() {
-		return "InvalidStockIdException [message=" + message + "]";
+		return "InvalidMasterdataCategoryIdException [message=" + message + "]";
 	}
 	
 }

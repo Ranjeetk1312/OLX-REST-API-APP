@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(value=InvalidMasterdataCategoryIdException.class)
 	public ResponseEntity<Object> handlerConflict(RuntimeException exception, WebRequest request){
-		String errorMessage = "{\"error\":\"Invalid stock id\"}";
+		String errorMessage = "{\"error\":\"Invalid InvalidMasterdataCategoryIdException id\"}";
 		ResponseEntity<Object> response =
 				handleExceptionInternal(exception,errorMessage,new HttpHeaders(),HttpStatus.CONFLICT,request);
 		return response;
