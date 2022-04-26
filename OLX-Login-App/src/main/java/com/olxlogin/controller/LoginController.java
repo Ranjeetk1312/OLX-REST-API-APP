@@ -29,32 +29,37 @@ public class LoginController {
 	@Autowired
 	LoginService loginService;
 	
-	
+	//1
 	@PostMapping(value="/user/authonticate", consumes= {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
 	@ApiOperation(value="Login Authontication",notes="This REST API Login Authontication")
 	public String authenticate(@RequestBody User user) {
 		return loginService.authenticate(user);
 	}
+	//2
 	@DeleteMapping(value="/user/logout")
 	@ApiOperation(value="Logout User",notes="This REST API Logout User")
 	public boolean logout(@RequestHeader("auth-token")String authToken) {
 		return loginService.logout(authToken);
 	}
+	//3
 	@PostMapping(value="/user", consumes= {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
 	@ApiOperation(value="Registration User",notes="This REST API Registration User")
 	public User registers(@RequestBody User user) {
 		return loginService.registers(user);
 	}
+	//4
 	@GetMapping(value="/user",consumes= {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
 	@ApiOperation(value="User Information",notes="This REST API Return User Information")
 	public List<User> returnUserInfo(@RequestHeader("Authorization")String authToken) {
 		return loginService.returnUserInfo(authToken);
 	}
+	//5
 	@GetMapping(value="/token/validate",consumes= {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
 	@ApiOperation(value="Validate Token",notes="This REST API Validate Token")
 	public ResponseEntity<Boolean> validateToken(@RequestHeader("Authorization")String authToken){//(@RequestHeader("auth-token")
 		return new ResponseEntity<Boolean>(loginService.validateToken(authToken), HttpStatus.OK);
 	}
+	//-------------------------------------------------------------------------------------------------------
 	@GetMapping(value="/user/username",consumes= {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
 	@ApiOperation(value="User Information",notes="This REST API Return User Information")
 	public String returnUserName(@RequestHeader("Authorization")String authToken) {
