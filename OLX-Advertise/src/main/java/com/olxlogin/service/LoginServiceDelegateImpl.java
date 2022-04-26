@@ -14,6 +14,8 @@ import org.springframework.web.client.RestTemplate;
 
 import com.zensar.exception.InvalidAdvertiseIdException;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
 @Service
 
 public class LoginServiceDelegateImpl implements LoginServiceDelegate {
@@ -21,7 +23,7 @@ public class LoginServiceDelegateImpl implements LoginServiceDelegate {
 	@Autowired
 	RestTemplate restTemplate;
 	
-	//@CircuitBreaker(name="AUTH_TOKEN_VALIDATION",fallbackMethod="fallbackIsTokenValid")
+	@CircuitBreaker(name="AUTH_TOKEN_VALIDATION", fallbackMethod="fallbackIsTokenValid")
 	@Override
 	public boolean isTokenValid(String authToken) {
 	HttpHeaders headers = new HttpHeaders();
@@ -34,12 +36,12 @@ public class LoginServiceDelegateImpl implements LoginServiceDelegate {
 			this.restTemplate.exchange("http://API-GATEWAY/olx/login/token/validate", HttpMethod.GET, entity, Boolean.class);
 	return response.getBody();
 	}
-	/*
-	 * public boolean fallbackIsTokenValid(String authToken,Exception exception){
-	 * 	System.out.println("Olx Login failed"+exception);
-	 * return false;
-	 * }
-	 */
+	
+	public boolean fallbackIsTokenValid(String authToken,Exception exception) {
+		System.out.println("Olx Login failed Inside fallbackIsTokenValid" + exception);
+		return false;
+	  }
+	 
 
 	@Override
 	public String isIdPresent(int categoryId) {
