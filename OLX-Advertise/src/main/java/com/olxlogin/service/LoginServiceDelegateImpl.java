@@ -30,7 +30,8 @@ public class LoginServiceDelegateImpl implements LoginServiceDelegate {
 	HttpEntity entity = new HttpEntity(headers);
 	ResponseEntity<Boolean> response =
 	//this.restTemplate.exchange("http://localhost:9001/olx/login/token/validate", HttpMethod.GET, entity, Boolean.class);
-			this.restTemplate.exchange("http://AUTH-SERVICE/olx/login/token/validate", HttpMethod.GET, entity, Boolean.class);
+			//this.restTemplate.exchange("http://AUTH-SERVICE/olx/login/token/validate", HttpMethod.GET, entity, Boolean.class);
+			this.restTemplate.exchange("http://API-GATEWAY/olx/login/token/validate", HttpMethod.GET, entity, Boolean.class);
 	return response.getBody();
 	}
 	/*
@@ -55,7 +56,8 @@ public class LoginServiceDelegateImpl implements LoginServiceDelegate {
 		HttpEntity entity = new HttpEntity(headers);
 		ResponseEntity<String> response =
 				//this.restTemplate.exchange("http://localhost:9001/olx/login/user/username", HttpMethod.GET, entity, String.class);
-				this.restTemplate.exchange("http://AUTH-SERVICE/olx/login/user/username", HttpMethod.GET, entity, String.class);
+				//this.restTemplate.exchange("http://AUTH-SERVICE/olx/login/user/username", HttpMethod.GET, entity, String.class);
+				this.restTemplate.exchange("http://API-GATEWAY/olx/login/user/username", HttpMethod.GET, entity, String.class);
 		return response.getBody();
 	}
 
@@ -66,7 +68,8 @@ public class LoginServiceDelegateImpl implements LoginServiceDelegate {
 		try {
 		    ResponseEntity<String> response
 		        //= this.restTemplate.getForEntity("http://localhost:9002/olx/masterdata/advertise/category/{userId}",String.class, params);
-		    = this.restTemplate.getForEntity("http://MASTERDATA-SERVICE/olx/masterdata/advertise/category/{userId}",String.class, params);
+	        //= this.restTemplate.getForEntity("http://MASTERDATA-SERVICE/olx/masterdata/advertise/category/{userId}",String.class, params);
+		    = this.restTemplate.getForEntity("http://API-GATEWAY/olx/masterdata/advertise/category/{userId}",String.class, params);
 		    return response.getBody();
 		}
 		catch (Exception ex) {
@@ -81,7 +84,8 @@ public class LoginServiceDelegateImpl implements LoginServiceDelegate {
 		try {
 		    ResponseEntity<String> response
 		    //= restTemplate.getForEntity("http://localhost:9002/olx/masterdata/advertise/status/{userId}",String.class, params);
-		    = restTemplate.getForEntity("http://MASTERDATA-SERVICE/olx/masterdata/advertise/status/{userId}",String.class, params);
+		    //= restTemplate.getForEntity("http://MASTERDATA-SERVICE/olx/masterdata/advertise/status/{userId}",String.class, params);
+		    = restTemplate.getForEntity("http://API-GATEWAY/olx/masterdata/advertise/status/{userId}",String.class, params);
 		    return response.getBody();
 		}
 		catch (Exception ex) {
